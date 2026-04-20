@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XOX Arena</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PROFILE BUTTON -->
+<button id="profileBtn" class="profile-btn hidden" onclick="toggleProfile()">
+  <i class="fa-solid fa-user"></i>
+</button>
+
+<!-- LOGIN -->
+<section id="loginPage" class="page">
+  <div class="glass">
+    <h1>🎮 XOX Arena</h1>
+    <div class="social-login">
+      <button onclick="selectProvider('Google')"><i class="fa-brands fa-google"></i> Login Google</button>
+      <button onclick="selectProvider('Facebook')"><i class="fa-brands fa-facebook"></i> Login Facebook</button>
+      <button onclick="selectProvider('Instagram')"><i class="fa-brands fa-instagram"></i> Login Instagram</button>
+      <button onclick="selectProvider('WhatsApp')"><i class="fa-brands fa-whatsapp"></i> Login WhatsApp</button>
+    </div>
+  </div>
+</section>
+
+<!-- USERNAME -->
+<section id="usernamePage" class="page hidden">
+  <div class="glass">
+    <h2 id="providerTitle"></h2>
+    <input type="text" id="usernameInput" placeholder="Masukkan Username">
+    <button onclick="nextToPassword()">Lanjutkan</button>
+    <button onclick="showPage('loginPage')">Kembali</button>
+  </div>
+</section>
+
+<!-- PASSWORD -->
+<section id="passwordPage" class="page hidden">
+  <div class="glass">
+    <h2>Masukkan Password</h2>
+    <input type="password" id="passwordInput">
+    <button onclick="loginSuccess()">Login</button>
+  </div>
+</section>
+
+<!-- HOME -->
+<section id="homePage" class="page hidden">
+  <div class="glass">
+    <h2>🏠 Beranda</h2>
+    <button onclick="showPage('modePage')">Mulai Game</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+</section>
+
+<!-- MODE -->
+<section id="modePage" class="page hidden">
+  <div class="glass">
+    <h2>Pilih Mode</h2>
+    <button onclick="chooseMode('computer')">Vs Komputer</button>
+    <button onclick="chooseMode('friend')">Vs Teman</button>
+    <button onclick="showPage('homePage')">Kembali</button>
+  </div>
+</section>
+
+<!-- NAME -->
+<section id="namePage" class="page hidden">
+  <div class="glass">
+    <h2>Masukkan Nama</h2>
+    <div id="singlePlayer">
+      <input type="text" id="player1" placeholder="Nama Player">
+    </div>
+    <div id="twoPlayers" class="hidden">
+      <input type="text" id="playerOne" placeholder="Player 1">
+      <input type="text" id="playerTwo" placeholder="Player 2">
+    </div>
+    <button onclick="startGame()">Mulai</button>
+  </div>
+</section>
+
+<!-- GAME -->
+<section id="gamePage" class="page hidden">
+  <div class="glass game-box">
+    <h2 id="turnInfo"></h2>
+    <div class="board" id="board"></div>
+    <div class="game-buttons">
+      <button onclick="resetGame()">Main Lagi</button>
+      <button onclick="showPage('homePage')">Kembali</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+</section>
+
+<!-- PROFILE PANEL -->
+<div id="profilePanel" class="profile-panel hidden">
+  <h3>👤 Profil</h3>
+  <label class="upload-area">
+    <input type="file" id="profileImageInput" accept="image/*">
+    <img id="profileImage" class="profile-img">
+    <span>Upload Foto</span>
+  </label>
+  <p id="profileUsername"></p>
+  <p id="profileProvider"></p>
+
+  <h4>VS Komputer</h4>
+  <p>Menang: <span id="winCount">0</span></p>
+  <p>Kalah: <span id="loseCount">0</span></p>
+  <p>Seri: <span id="drawCount">0</span></p>
+
+  <h4>VS Teman</h4>
+  <p>Total Main: <span id="friendCount">0</span></p>
+
+  <button onclick="toggleProfile()">Tutup</button>
+</div>
+
+<!-- RESULT POPUP -->
+<div id="resultPopup" class="result-popup hidden">
+  <div class="result-content">
+    <div id="resultEmoji" class="emoji"></div>
+    <h2 id="resultText"></h2>
+    <button onclick="resetGame()">Main Lagi</button>
+  </div>
+</div>
+
+<audio id="clickSound" src="click.wav"></audio>
+<audio id="winSound" src="winn.wav"></audio>
+<audio id="beckSound" src="beck.mp3"></audio>
+<audio id="loginSound" src="login.wav"></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
